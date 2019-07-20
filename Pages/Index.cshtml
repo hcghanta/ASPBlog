@@ -1,0 +1,67 @@
+﻿@page
+@model ASPBlog.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div>
+        <h1 style="display:inline;">List of Blogs</h1>
+        <a asp-page="Create" style="float:right" class="btn btn-outline-dark">Create New</a>
+        <p></p>
+    </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].PublisedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog[0].Hits)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Blog) {
+        <tr>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.ID">@item.Title</a>
+                <!--@Html.DisplayFor(modelItem => item.Title)-->
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescriptionTrimmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublisedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hits)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
